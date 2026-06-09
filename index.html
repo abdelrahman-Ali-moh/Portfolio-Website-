@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdelrahman Ali — Data Analyst & BI Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0A1628;
+      --navy-mid: #0F2040;
+      --navy-card: #112244;
+      --blue: #2D7DD2;
+      --blue-light: #4A9AE8;
+      --amber: #F4A623;
+      --amber-dim: rgba(244,166,35,0.15);
+      --white: #F8F9FA;
+      --slate: #8892A0;
+      --slate-dim: rgba(136,146,160,0.12);
+      --border: rgba(45,125,210,0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,22,40,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--slate);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--blue);
+      color: var(--white) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.85rem !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--blue-light) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(45,125,210,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45,125,210,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(45,125,210,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; max-width: 800px; text-align: center; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--amber-dim);
+      border: 1px solid rgba(244,166,35,0.3);
+      border-radius: 100px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--amber);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: '●'; font-size: 0.6rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    h1 .accent { color: var(--blue); }
+    .hero-terminal {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: var(--slate);
+      margin-bottom: 1rem;
+      min-height: 1.4em;
+    }
+    .hero-terminal .cursor {
+      display: inline-block;
+      width: 2px; height: 1.1em;
+      background: var(--blue);
+      animation: blink 1s infinite;
+      vertical-align: text-bottom;
+      margin-left: 2px;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-desc {
+      color: var(--slate);
+      font-size: 1.05rem;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      padding: 0.75rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 0.75rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--blue); background: var(--slate-dim); }
+    .hero-stats {
+      display: flex; gap: 2.5rem; justify-content: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--amber);
+    }
+    .stat-label { font-size: 0.8rem; color: var(--slate); margin-top: 0.2rem; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--blue);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-intro { color: var(--slate); max-width: 540px; line-height: 1.7; margin-bottom: 3rem; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--navy-mid); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: var(--slate); line-height: 1.8; margin-bottom: 1rem; }
+    .about-text p strong { color: var(--white); }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .skill-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+    }
+    .skill-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.7rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      background: var(--slate-dim);
+      color: var(--slate);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .tag.blue { background: rgba(45,125,210,0.15); color: var(--blue-light); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--navy); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue), rgba(45,125,210,0.1));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.8rem;
+      padding-left: 1.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -2.3rem; top: 0.4rem;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 2px solid var(--navy);
+      box-shadow: 0 0 0 3px rgba(45,125,210,0.25);
+    }
+    .timeline-meta {
+      display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--amber);
+      background: var(--amber-dim);
+      padding: 0.15rem 0.6rem;
+      border-radius: 4px;
+    }
+    .timeline-co {
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+    .timeline-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+    }
+    .timeline-bullets { list-style: none; }
+    .timeline-bullets li {
+      color: var(--slate);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-bullets li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--blue);
+      font-size: 0.8rem;
+    }
+    .timeline-bullets li strong { color: var(--white); }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--navy-mid); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+    .project-icon {
+      width: 40px; height: 40px;
+      background: rgba(45,125,210,0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .project-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .project-card p {
+      color: var(--slate);
+      font-size: 0.87rem;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.2rem;
+    }
+    .project-footer { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-link {
+      color: var(--blue);
+      font-size: 0.8rem;
+      text-decoration: none;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .project-link:hover { color: var(--blue-light); }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications { background: var(--navy); }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+    .cert-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.3rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .cert-icon {
+      font-size: 1.5rem; flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .cert-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+    .cert-card p { font-size: 0.82rem; color: var(--slate); }
+    .cert-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--amber);
+      margin-top: 0.3rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy-mid); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .contact-info p { color: var(--slate); line-height: 1.7; margin-bottom: 1.5rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.75rem;
+      color: var(--slate);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--white); }
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      background: var(--slate-dim);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .contact-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .contact-card p { color: var(--slate); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .contact-card .btn-primary { display: block; text-align: center; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--slate);
+    }
+    footer span { color: var(--blue); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">AA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">doc
+    <h1>Abdelrahman Ali<br><span class="accent">Data Analyst</span> & BI Developer</h1>
+    <div class="hero-terminal" id="terminal-text"><span class="cursor"></span></div>
+    <p class="hero-desc">4+ years turning raw data into executive-level decisions. Power BI · Python · SQL · Databricks · Odoo ERP. Building end-to-end solutions across construction, agriculture, and e-commerce.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="mailto:abdelrahman2556250@gmail.com" class="btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">Reduced manual reporting</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">35%</div>
+        <div class="stat-label">Improved data accuracy</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">15%</div>
+        <div class="stat-label">Revenue increase</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30%</div>
+        <div class="stat-label">Stakeholder engagement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">// about me</div>
+    <h2>Turning Data into Decisions</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>Data Analyst and BI Developer</strong> based in Riyadh, Saudi Arabia, with 4+ years of experience delivering end-to-end data solutions. I specialize in building Power BI dashboards, ETL pipelines, and machine learning models that drive real business impact.</p>
+        <p>Currently at <strong>Hadi Bin Shajaa for Contracting</strong>, I work across electrical construction projects — monitoring budgets, resource allocation, and KPIs through automated pipelines connecting Odoo ERP to Databricks.</p>
+        <p>My background spans <strong>construction, agriculture, and e-commerce</strong>, giving me a broad toolkit to extract insights from complex, multi-source datasets. I hold a B.Sc. in Computer and Information Technology (Software Engineering) from Mansoura University.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>Visualization</h4>
+          <div class="skill-tags">
+            <span class="tag blue">Power BI</span>
+            <span class="tag blue">DAX</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">Streamlit</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>Analysis</h4>
+          <div class="skill-tags">
+            <span class="tag blue">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag blue">SQL</span>
+            <span class="tag">Excel</span>
+            <span class="tag">A/B Testing</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>Engineering</h4>
+          <div class="skill-tags">
+            <span class="tag blue">Databricks</span>
+            <span class="tag">Delta Tables</span>
+            <span class="tag">Azure ADF</span>
+            <span class="tag">Odoo ERP</span>
+            <span class="tag">ETL</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4>ML / Cloud</h4>
+          <div class="skill-tags">
+            <span class="tag">Scikit-learn</span>
+            <span class="tag blue">Azure</span>
+            <span class="tag">GCP</span>
+            <span class="tag">Regression</span>
+            <span class="tag">Clustering</span>
+            <span class="tag">Flask</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">// work experience</div>
+    <h2>Professional Journey</h2>
+    <p class="section-intro">From agricultural analytics in Egypt to construction BI in Riyadh — building data pipelines and dashboards that reach C-level executives.</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">Nov 2025 – Present</span>
+          <span class="timeline-co">Hadi Bin Shajaa for Contracting · Riyadh, Saudi Arabia</span>
+        </div>
+        <div class="timeline-title">Data Analyst – Electrical Projects</div>
+        <ul class="timeline-bullets">
+          <li>Analyzed electrical construction project data via <strong>Odoo ERP</strong> — budgets, timelines, resource allocation, procurement.</li>
+          <li>Built Power BI dashboards with advanced <strong>DAX measures</strong> tracking cost variance, milestone completion, and labor efficiency for real-time executive decision-making.</li>
+          <li>Designed automated <strong>ETL pipelines</strong> extracting from Odoo (Projects, Accounting, Inventory) into Databricks Delta tables.</li>
+          <li>Collaborated daily with engineering teams to translate field operations into actionable stakeholder reports.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">May 2025 – Oct 2025</span>
+          <span class="timeline-co">Juhayna · Al-Wahat & El-Wadi El-Gedid, Egypt</span>
+        </div>
+        <div class="timeline-title">Senior Data Analyst – Agricultural Operations</div>
+        <ul class="timeline-bullets">
+          <li>Led analysis covering crop planning, irrigation scheduling, and livestock performance monitoring for large-scale farm operations.</li>
+          <li>Developed interactive Power BI dashboards tracking <strong>10+ farm KPIs</strong> including yield per hectare, water consumption efficiency, and livestock health anomalies.</li>
+          <li>Applied ML models (regression, anomaly detection) using <strong>Python & Scikit-learn</strong>, improving data accuracy by <strong>35%</strong>.</li>
+          <li>Integrated SQL-based automated reporting, eliminating manual data collection and improving governance.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">Jun 2023 – Feb 2025</span>
+          <span class="timeline-co">Excelerate · Remote, UAE</span>
+        </div>
+        <div class="timeline-title">Data Analyst</div>
+        <ul class="timeline-bullets">
+          <li>Built <strong>10+ Power BI dashboards</strong> using DAX and Power Query, increasing stakeholder engagement by <strong>30%</strong>.</li>
+          <li>Automated reporting pipelines integrating 5+ data sources at 95% accuracy, reducing manual report time by <strong>70%</strong>.</li>
+          <li>Developed predictive models and <strong>time-series forecasts</strong> contributing to a 15% revenue increase.</li>
+          <li>Optimized SQL Server queries for ETL, increasing team productivity by <strong>20%</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-date">Nov 2020 – Jul 2021</span>
+          <span class="timeline-co">Data Science Lab (WQU) · Internship</span>
+        </div>
+        <div class="timeline-title">Data Science Intern</div>
+        <ul class="timeline-bullets">
+          <li>Completed <strong>8 end-to-end projects</strong> including real estate price prediction, earthquake analysis, A/B testing, and financial forecasting.</li>
+          <li>Applied Python, SQL, and Flask to build data pipelines addressing real-world business challenges.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">// projects</div>
+    <h2>Featured Work</h2>
+    <p class="section-intro">A selection of dashboards, pipelines, and ML solutions built across sectors.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">🏗️</div>
+        <h3>Hadi Bin Shajaa BI Dashboard</h3>
+        <p>End-to-end Power BI solution for electrical construction projects. Tracks cost variance, milestone completion, and labor efficiency with real-time Odoo ERP integration via Databricks Delta tables.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="tag blue">Power BI</span>
+            <span class="tag">Databricks</span>
+            <span class="tag">Odoo</span>
+          </div>
+          <a href="https://drive.google.com/open?id=14dyTAGwCAGR9h4W7hYsT9JksKjSbHhjF" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+         <div class="project-card">
+        <div class="project-icon">🍜</div>
+        <h3>Kellogg's Noodles Sales Analysis</h3>
+        <p>Evaluated managerial and regional performance across Upper Egypt, identifying high-performing strategies. Directed jumbo sales initiatives through strategic channel allocation, surpassing targets in key branches.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="tag blue">Power BI</span>
+            <span class="tag">Sales Analytics</span>
+          </div>
+          <a href="https://drive.google.com/open?id=1cgTwqaEzjSz-W4O9tsF35OOQv0TICiXB" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📈</div>
+        <h3>Trading Analysis Dashboard</h3>
+        <p>Interactive Power BI trading analytics dashboard with advanced DAX measures for financial metrics, trend analysis, and performance tracking across trading operations.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="tag blue">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">Finance</span>
+          </div>
+          <a href="https://drive.google.com/open?id=1vhmpz2VPwLk8VAj7Z6QSLEUboYuRawTu" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🌍</div>
+        <h3>World Happiness Ranking Dashboard</h3>
+        <p>Power BI report visualizing global happiness indices across countries, featuring geographic maps, trend analysis, and comparative metrics with interactive filtering by region and year.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="tag blue">Power BI</span>
+            <span class="tag">Data Viz</span>
+          </div>
+          <a href="https://drive.google.com/open?id=1OXIgbs3BKrad0YTxquwUdObjf36GM0ip" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📉</div>
+        <h3>Sales Forecasting Model</h3>
+        <p>Time-series forecasting model in Python predicting monthly sales with 90% accuracy, enabling optimized inventory and production planning. Contributed to a 15% revenue increase at Excelerate.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="tag blue">Python</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Forecasting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🧠</div>
+        <h3>Deep Fake Detection</h3>
+        <p>Computer vision project for detecting AI-generated deepfake media. Applied deep learning techniques for binary classification of authentic vs. manipulated visual content.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="tag blue">Deep Learning</span>
+            <span class="tag">Python</span>
+            <span class="tag">CV</span>
+          </div>
+          <a href="https://drive.google.com/open?id=19xBHyPzJUpST2LWzhPm7PftzmvQiYeYM" class="project-link" target="_blank">View →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">👥</div>
+        <h3>Customer Segmentation</h3>
+        <p>K-means clustering model segmenting customers by purchasing behavior. Output directly improved targeted marketing strategies by identifying distinct buyer personas within large transaction datasets.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="tag blue">Python</span>
+            <span class="tag">K-Means</span>
+            <span class="tag">ML</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🤖</div>
+        <h3>Bright Chatbot – Arabic AI Assistant</h3>
+        <p>Arabic-language AI assistant built with Flask and Hugging Face Transformers for NLP tasks. Supports Arabic text understanding and generation for business Q&A use cases.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="tag blue">Flask</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Arabic</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">// certifications</div>
+    <h2>Credentials</h2>
+    <div class="certs-grid">
+
+      <div class="cert-card">
+        <div class="cert-icon">🎓</div>
+        <div>
+          <h4>Data Analysis – ITI</h4>
+          <p>Information Technology Institute · Hands-on training in Python, SQL, and Power BI with real-world projects.</p>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">🔬</div>
+        <div>
+          <h4>HCIA-AI – Huawei</h4>
+          <p>Huawei Certified ICT Associate in Artificial Intelligence — covering ML fundamentals, neural networks, and AI engineering.</p>
+          <div class="cert-id">ID: 010102001808054811409</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">📊</div>
+        <div>
+          <h4>Power Query & Data Modeling</h4>
+          <p>Data Science 365 — advanced Power Query transformations and star schema data modeling for Power BI.</p>
+          <div class="cert-id">ID: 2801875EF6</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">🌐</div>
+        <div>
+          <h4>WorldQuant University – Applied DS Lab</h4>
+          <p>8 end-to-end data science projects covering real estate prediction, financial forecasting, and A/B testing.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">// contact</div>
+    <h2>Get In Touch</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>Open to Data Analyst, BI Developer, and Data Engineer roles in Saudi Arabia and the UAE. Let's connect.</p>
+        <div class="contact-links">
+          <a href="mailto:abdelrahman2556250@gmail.com" class="contact-link">
+            <div class="contact-link-icon">📧</div>
+            abdelrahman2556250@gmail.com
+          </a>
+          <a href="tel:+966569191734" class="contact-link">
+            <div class="contact-link-icon">📱</div>
+            +966 569 191 734
+          </a>
+          <a href="https://www.linkedin.com/in/abdelrahman-ali-586584216/" class="contact-link" target="_blank">
+            <div class="contact-link-icon">💼</div>
+            linkedin.com/in/abdelrahman-ali-586584216
+          </a>
+          <a href="https://www.kaggle.com/abdelrahmanalimo" class="contact-link" target="_blank">
+            <div class="contact-link-icon">🏆</div>
+            kaggle.com/abdelrahmanalimo
+          </a>
+          <a class="contact-link">
+            <div class="contact-link-icon">📍</div>
+            Riyadh, Saudi Arabia
+          </a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Looking for a Data Analyst?</h3>
+        <p>I'm available for full-time roles and project-based consulting. I'll get back to you within 24 hours.</p>
+        <a href="mailto:abdelrahman2556250@gmail.com" class="btn-primary">Send a Message →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & built by <span>Abdelrahman Ali Mohamed Ali</span> · Riyadh, Saudi Arabia · 2025</p>
+</footer>
+
+<script>
+  // Terminal typing effect
+  const phrases = [
+    'Power BI · DAX · Power Query',
+    'Python · Pandas · Scikit-learn',
+    'SQL · Databricks · Delta Tables',
+    'ETL Pipelines · Azure · Odoo ERP',
+  ];
+  let pi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('terminal-text');
+  function type() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.innerHTML = phrase.slice(0, ++ci) + '<span class="cursor"></span>';
+      if (ci === phrase.length) { deleting = true; setTimeout(type, 1800); return; }
+    } else {
+      el.innerHTML = phrase.slice(0, --ci) + '<span class="cursor"></span>';
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+    }
+    setTimeout(type, deleting ? 40 : 70);
+  }
+  type();
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
